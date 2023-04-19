@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> JavaScript Callback</title>
+    </head>
+
+    <h1> JavaScript Callback </h1>
+    <p>
+        Callbacks:
+        A callback is a function that is passed as an argument to another function, which is then invoked inside the outer function to complete some kind of action. Here's an example of 
+    </p>
+    <p> Incpect the page then Open the console </p>
+
+    <p id="demo"></p>
+
+
+    <body>
+        <script>
+        function fetchData(url, callback) {
+            const xhr = new XMLHttpRequest();
+            console.log("we call the api")
+            xhr.open('GET', url);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    callback(null, JSON.parse(xhr.responseText));
+                } else {
+                    callback(xhr.statusText, null);
+                }
+            };
+
+            xhr.onerror = function() {
+                callback('Network error', null);
+            };
+            xhr.send();
+            console.log("we send the request")
+        }
+        fetchData('https://api.github.com/users', function(error, data) {
+            console.log("we get the responce")
+            if (error) {
+                console.error(error);
+            } else {
+                console.log(data);
+            }
+        });
+        console.log("contine work")
+        </script>
+    </body>
+</html>

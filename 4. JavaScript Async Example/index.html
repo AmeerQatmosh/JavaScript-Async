@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> JavaScript Async</title>
+    </head>
+
+    <h1> JavaScript Async </h1>
+    <h2>
+        Async/Await:
+        Async/Await is a more recent addition to JavaScript that allows you to write asynchronous code in a synchronous style, making it easier to read and understand. It uses Promises under the hood. Here's an example of using Async/Await in JavaScript:
+    </h2>
+    <h3> Open the console </h3>
+    <h1 id="demo"></h1>
+
+    <body>
+        <script>
+        async function fetchData() {
+            const response = await fetch('https://api.github.com/users');
+            const data = await response.json();
+            return data;
+        }
+        async function printData() {
+            try {
+                const data = await fetchData();
+                console.log(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        printData();
+        </script>
+    </body>
+</html>
